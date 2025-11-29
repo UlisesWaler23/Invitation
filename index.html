@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Invitación digital para nuestra boda">
+    <meta name="keywords" content="boda, invitación digital, matrimonio">
+    <meta name="author" content="Los Novios">
+    <title>Invitación de Boda</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Cinzel+Decorative:wght@400;700;900&family=Playwrite+US+Trad:wght@100..400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Pantalla de carga -->
+    <div class="loading-screen" id="loadingScreen">
+        <!-- Líneas que atraviesan la pantalla -->
+        <div class="envelope-line horizontal"></div>
+        <div class="envelope-line vertical"></div>
+
+        <div class="flying-envelopes">
+            <img src="https://static.vecteezy.com/system/resources/previews/001/187/381/non_2x/heart-png.png"
+                class="fly fly1">
+            <img src="https://static.vecteezy.com/system/resources/previews/001/187/381/non_2x/heart-png.png"
+                class="fly fly2">
+            <img src="https://static.vecteezy.com/system/resources/previews/001/187/381/non_2x/heart-png.png"
+                class="fly fly3">
+        </div>
+
+        <div class="envelope-wrapper" onclick="openInvitation()">
+            <!-- Texto "Toca Aquí" flotante -->
+            <div class="click-hint">¡Toca Aquí!</div>
+
+            <!-- Partículas de brillo -->
+            <div class="envelope-sparkles">
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+            </div>
+
+            <div class="envelope">
+                <img src="./imgs/pngtree-red-blank-circle-badge-png-image_11751022.png" class="envelope-img">
+
+                <div class="envelope-top"></div>
+                <div class="envelope-bottom"></div>
+            </div>
+            <div class="letter">
+                <p class="letter-text">Ana & Carlos</p>
+                <p class="letter-sub">Nuestra Boda</p>
+            </div>
+        </div>
+
+        <!-- Texto inferior -->
+        <p class="touch-text">¡Toca el sobre para abrir!</p>
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="mainContent" style="display: none;">
+        <!-- Header -->
+        <header class="header fade-in">
+            <h1 class="couple-names">Ana & Carlos</h1>
+            <p class="wedding-title">NOS CASAMOS</p>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="https://th.bing.com/th/id/OIP.72hNzpXUgHM2Ml3pjC5QGwHaEo?w=258&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
+                alt="Pareja de novios" class="hero-image">
+            <div class="hero-content">
+                <h2 class="date-place">15 de Diciembre, 2024</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 20px;">Hacienda Los Laureles</p>
+                <button class="location-button" onclick="scrollToSection('rsvp')">Confirmar Asistencia</button>
+            </div>
+        </section>
+
+        <!-- Countdown -->
+        <section class="countdown fade-in">
+            <h2 class="countdown-title">Faltan</h2>
+            <div class="countdown-container" id="countdown"></div>
+        </section>
+
+        <!-- Locations -->
+        <section class="locations fade-in">
+            <h2 class="section-title">Nuestro Día Especial</h2>
+            <div class="location-cards">
+                <div class="location-card">
+                    <div class="location-icon"></div>
+                    <h3 class="location-time">4:00 PM</h3>
+                    <h4 class="location-name">Ceremonia Religiosa</h4>
+                    <p class="location-address">
+                        Catedral de la Ciudad<br>
+                        Av. Principal #123
+                    </p>
+                    <button class="location-button" onclick="openMaps('catedral')">Ver en Maps</button>
+                </div>
+                <div class="location-card">
+                    <div class="location-icon"></div>
+                    <h3 class="location-time">7:00 PM</h3>
+                    <h4 class="location-name">Recepción</h4>
+                    <p class="location-address">
+                        Hacienda Los Laureles<br>
+                        Carretera km 45.5
+                    </p>
+                    <button class="location-button" onclick="openMaps('hacienda')">Ver en Maps</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrusel de Fotos -->
+        <section class="gallery fade-in">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active">
+                        <div class="carousel-image-container">
+                            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Nuestro primer encuentro" class="carousel-image">
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <div class="carousel-image-container">
+                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="La propuesta" class="carousel-image">
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <div class="carousel-image-container">
+                            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Preparativos" class="carousel-image">
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <div class="carousel-image-container">
+                            <img src="https://images.unsplash.com/photo-1537633552985-df8f916c5c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Momentos especiales" class="carousel-image">
+                        </div>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="carousel-slide">
+                        <div class="carousel-image-container">
+                            <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                                alt="Nuestro amor" class="carousel-image">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de navegación -->
+                <button class="carousel-btn carousel-prev" onclick="prevSlide()">❮</button>
+                <button class="carousel-btn carousel-next" onclick="nextSlide()">❯</button>
+
+                <!-- Contador -->
+                <div class="carousel-counter" id="carouselCounter">1 / 5</div>
+
+                <!-- Indicadores -->
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+
+            <!-- Instrucciones -->
+            <div class="carousel-instructions">
+                <p>Desliza para ver más fotos</p>
+            </div>
+        </section>
+
+
+        <!-- RSVP Form -->
+        <section class="rsvp fade-in" id="rsvp">
+            <h2 class="section-title">Confirma Tu Asistencia</h2>
+            <form class="rsvp-form" id="rsvpForm">
+                <div class="form-group">
+                    <label class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-input" required placeholder="Tu nombre y apellido">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">¿Asistirás?</label>
+                    <select class="form-select" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="si">¡Sí, estaré allí!</option>
+                        <option value="no">Lamentablemente no podré asistir</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Número de personas</label>
+                    <select class="form-select" required>
+                        <option value="">Selecciona el número</option>
+                        <option value="1">1 persona</option>
+                        <option value="2">2 personas</option>
+                        <option value="3">3 personas</option>
+                        <option value="4">4 personas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mensaje para los novios (opcional)</label>
+                    <textarea class="form-textarea" rows="4" placeholder="Escribe tu mensaje especial..."></textarea>
+                </div>
+                <button type="submit" class="submit-button">Enviar Confirmación</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in">
+            <p class="footer-text">Con el amor de Ana y Carlos</p>
+            <p class="footer-text">15 de Diciembre, 2024</p>
+            <p class="footer-text" style="margin-top: 20px; font-size: 0.9rem;">
+                ¡Esperamos compartir este día especial contigo!
+            </p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

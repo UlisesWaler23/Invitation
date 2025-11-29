@@ -1,0 +1,1098 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playwrite US Trad', cursive;
+    background: linear-gradient(135deg, #f5f3e9 0%, #fff2d5 100%);
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Animación de entrada */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f3e9;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out;
+}
+
+/* LÍNEAS QUE ATRAVIESAN LA PANTALLA */
+.envelope-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #8b6b4c 50%, transparent 100%);
+    transform-origin: center;
+    transition: all 1.5s ease;
+    z-index: 15;
+}
+
+.envelope-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    animation: pulse-gentle 2s infinite ease-in-out;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes pulse-gentle {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+@keyframes pulse-strong {
+    0%, 100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+}
+
+/* Efecto hover más pronunciado */
+.envelope-wrapper:hover .envelope-img {
+    animation: pulse-strong 1s infinite ease-in-out;
+    transform: scale(1.1);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* La imagen desaparece cuando se abre */
+.open-envelope .envelope-img {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.envelope-line.horizontal {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.envelope-line.vertical {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, #8b6b4c 50%, transparent 100%);
+    transform: translateX(-50%);
+}
+
+/* Cuando se abre, las líneas se expanden */
+.open-envelope .envelope-line.horizontal {
+    transform: translateY(-50%) scaleX(0);
+    opacity: 0;
+}
+
+.open-envelope .envelope-line.vertical {
+    transform: translateX(-50%) scaleY(0);
+    opacity: 0;
+}
+
+/* Header y nombres */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+    backdrop-filter: blur(10px);
+}
+
+.couple-names {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    color: #8b6b4c;
+}
+
+.wedding-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.2rem;
+    color: #666;
+    letter-spacing: 3px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.date-place {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+/* Countdown */
+.countdown {
+    background: rgba(255, 242, 213, 0.9);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.countdown-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #8b6b4c;
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
+}
+
+.countdown-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d4af37;
+    display: block;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Locations */
+.locations {
+    padding: 60px 20px;
+    background: white;
+}
+
+.section-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #8b6b4c;
+}
+
+.location-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.location-card {
+    background: #f9f5f0;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+}
+
+.location-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #d4af37;
+}
+
+.location-time {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.2rem;
+    color: #8b6b4c;
+    margin-bottom: 10px;
+}
+
+.location-name {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.location-address {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.location-button {
+    background: #d4af37;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: inherit;
+}
+
+.location-button:hover {
+    background: #b8941f;
+}
+
+/* RSVP Form */
+.rsvp {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f5f3e9 0%, #fff2d5 100%);
+}
+
+.rsvp-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #d4af37;
+}
+
+.submit-button {
+    width: 100%;
+    background: #d4af37;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: inherit;
+}
+
+.submit-button:hover {
+    background: #b8941f;
+}
+
+/* Footer */
+.footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.footer-text {
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 1s ease-out;
+}
+
+/* SOBRE CON ANIMACIÓN MEJORADA */
+.envelope-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    height: 120px;
+    cursor: pointer;
+    z-index: 20;
+    perspective: 1000px;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 1s ease;
+}
+
+/* Parte superior del sobre (se abre hacia arriba) - INICIALMENTE OCULTA */
+.envelope-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%);
+    border: 3px solid #a6851a;
+    border-radius: 8px 8px 0 0;
+    transform-origin: bottom;
+    transition: transform 1s ease;
+    z-index: 2;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 70%, 0% 100%);
+    opacity: 0;
+    transform: rotateX(0deg);
+}
+
+/* Parte inferior del sobre (se abre hacia abajo) - INICIALMENTE OCULTA */
+.envelope-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(135deg, #b8941f 0%, #d4af37 100%);
+    border: 3px solid #a6851a;
+    border-radius: 0 0 8px 8px;
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 1;
+    opacity: 0;
+    transform: rotateX(0deg);
+}
+
+/* Cuando se abre, mostramos las partes y las animamos */
+.open-envelope .envelope-top {
+    opacity: 1;
+    transform: rotateX(120deg);
+}
+
+.open-envelope .envelope-bottom {
+    opacity: 1;
+    transform: rotateX(-120deg);
+}
+
+/* Carta que sale - INICIALMENTE OCULTA */
+.letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 130px;
+    height: 90px;
+    transform: translate(-50%, -50%) translateY(20px);
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    opacity: 0;
+    padding: 15px 10px;
+    transition: all 1s ease-out;
+    overflow: hidden;
+    z-index: 0;
+    border: 2px solid #f0f0f0;
+}
+
+.letter::after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    width: 90%;
+    height: 50%;
+    background: repeating-linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.1) 0px,
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 2px,
+            transparent 8px);
+    border-radius: 3px;
+    opacity: 0.4;
+}
+
+.flying-envelopes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.fly {
+    width: 40px;
+    opacity: 0.4;
+    position: absolute;
+    animation: fly 8s infinite linear;
+}
+
+.fly1 {
+    left: 10%;
+    animation-duration: 9s;
+    animation-delay: 0s;
+}
+
+.fly2 {
+    left: 50%;
+    animation-duration: 7s;
+    animation-delay: 1s;
+}
+
+.fly3 {
+    left: 80%;
+    animation-duration: 10s;
+    animation-delay: 2s;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.letter::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -50%;
+    width: 200%;
+    height: 300%;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.8) 50%,
+        transparent 100%
+    );
+    transform: rotate(25deg);
+    animation: shine 3s infinite ease-in-out;
+}
+
+@keyframes shine {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
+
+.letter-text {
+    font-family: "Dancing Script", cursive;
+    font-size: 1.3rem;
+    color: #8b6b4c;
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+.letter-sub {
+    font-family: "Cinzel Decorative", serif;
+    font-size: 0.8rem;
+    color: #8b6b4c;
+    opacity: 0.8;
+}
+
+/* Texto bajo "Toca para abrir" */
+.touch-text {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #8b6b4c;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ANIMACIONES */
+
+/* Carta sube cuando el sobre se abre */
+.open-envelope .letter {
+    transform: translate(-50%, -50%) translateY(-60px);
+    opacity: 1;
+}
+
+/* Desvanecer pantalla de carga */
+.fade-out-loading {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+    pointer-events: none;
+}
+
+/* Efecto de brillo en el sobre */
+.envelope::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.envelope-img::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: shine-effect 3s infinite;
+    z-index: -1;
+}
+
+@keyframes shine-effect {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+/* Efecto de parpadeo sutil */
+@keyframes subtle-blink {
+    0%, 90%, 100% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 0.7;
+    }
+}
+
+.envelope-img {
+    animation: 
+        pulse-gentle 2s infinite ease-in-out,
+        subtle-blink 4s infinite ease-in-out;
+}
+
+/* Cuando se abre, la imagen desaparece con efecto */
+.open-envelope .envelope-img {
+    opacity: 0;
+    transform: scale(0.8) rotate(10deg);
+    animation: none;
+}
+
+/* Efecto de click */
+.envelope-img:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+/* Texto "Toca Aquí" flotante */
+.click-hint {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #d4af37, #b8941f);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-family: 'Dancing Script', cursive;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: float-up 3s infinite ease-in-out;
+    z-index: 25;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes float-up {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0px);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* Efecto de partículas alrededor */
+.envelope-sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #d4af37;
+    border-radius: 50%;
+    animation: sparkle-float 4s infinite ease-in-out;
+}
+
+.sparkle:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+.sparkle:nth-child(2) { top: 80%; left: 80%; animation-delay: 1s; }
+.sparkle:nth-child(3) { top: 60%; left: 10%; animation-delay: 2s; }
+.sparkle:nth-child(4) { top: 30%; left: 90%; animation-delay: 3s; }
+
+@keyframes sparkle-float {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+    .envelope-img {
+        animation: 
+            pulse-gentle 2.5s infinite ease-in-out,
+            subtle-blink 5s infinite ease-in-out;
+    }
+    
+    .click-hint {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        top: -50px;
+    }
+    
+    .envelope-wrapper:hover .envelope-img {
+        animation: pulse-strong 1.2s infinite ease-in-out;
+    }
+}
+
+.envelope-wrapper:hover .envelope-img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+@media(max-width: 480px) {
+    .envelope-wrapper {
+        width: 130px;
+        height: 100px;
+    }
+
+    .letter {
+        width: 110px;
+        height: 75px;
+        padding: 12px 8px;
+    }
+
+    .letter-text {
+        font-size: 1.1rem;
+    }
+
+    .letter-sub {
+        font-size: 0.7rem;
+    }
+
+    .touch-text {
+        font-size: 1.3rem;
+        bottom: 80px;
+    }
+    
+    .envelope-line.horizontal,
+    .envelope-line.vertical {
+        opacity: 0.7;
+    }
+}
+
+/* Carrusel de Imágenes */
+.gallery {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f5f3e9 0%, #fff2d5 100%);
+    position: relative;
+}
+
+.carousel-container {
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    height: 500px; /* Agregar altura fija */
+    overflow: hidden; /* Ocultar slides fuera del contenedor */
+}
+
+.carousel-track {
+    position: relative; /* Cambiar de flex a relative */
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute; /* Posicionar slides de forma absoluta */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Ocultar todos inicialmente */
+    transform: scale(0.9);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.carousel-slide.active {
+    opacity: 1; /* Solo el activo es visible */
+    transform: scale(1);
+    pointer-events: all;
+    z-index: 2;
+}
+
+.carousel-slide.next {
+    opacity: 0;
+    transform: translateX(100%) scale(0.8);
+}
+
+.carousel-slide.prev {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.8);
+}
+
+.carousel-image-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.carousel-slide.active .carousel-image {
+    transform: scale(1.05);
+}
+
+/* Efectos de marco dorado */
+.carousel-image-container::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, #d4af37, #b8941f, #d4af37);
+    border-radius: 24px;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.carousel-image-container::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #f5f3e9, #fff2d5);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* Botones de navegación */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212, 175, 55, 0.95);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.carousel-btn:hover {
+    background: #b8941f;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-prev {
+    left: -30px;
+}
+
+.carousel-next {
+    right: -30px;
+}
+
+/* Indicadores */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+    gap: 15px;
+}
+
+.carousel-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #d4af37;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.carousel-dot::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-dot.active {
+    opacity: 1;
+    transform: scale(1.4);
+    background: #b8941f;
+    border-color: #8b6b4c;
+}
+
+.carousel-dot.active::before {
+    opacity: 1;
+}
+
+.carousel-dot:hover {
+    opacity: 0.8;
+    transform: scale(1.2);
+}
+
+/* Instrucciones */
+.carousel-instructions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.carousel-instructions svg {
+    color: #8b6b4c;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+.carousel-instructions p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    color: #8b6b4c;
+    margin: 0;
+}
+
+/* Contador */
+.carousel-counter {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    color: #8b6b4c;
+    font-family: 'Cinzel Decorative', serif;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    z-index: 5;
+}
+
+/* Efecto de brillo en la imagen activa */
+.carousel-slide.active .carousel-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    transform: skewX(-25deg);
+    animation: shine 3s infinite;
+    z-index: 1;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 200%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gallery {
+        padding: 60px 20px;
+    }
+    
+    .carousel-container {
+        max-width: 320px;
+        height: 400px;
+    }
+    
+    .carousel-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .carousel-prev {
+        left: -20px;
+    }
+    
+    .carousel-next {
+        right: -20px;
+    }
+    
+    .carousel-instructions p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        max-width: 280px;
+        height: 350px;
+    }
+    
+    .carousel-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .carousel-prev {
+        left: -15px;
+    }
+    
+    .carousel-next {
+        right: -15px;
+    }
+    
+    .carousel-instructions p {
+        font-size: 1rem;
+    }
+    
+    .carousel-dots {
+        gap: 12px;
+    }
+    
+    .carousel-dot {
+        width: 12px;
+        height: 12px;
+    }
+}
