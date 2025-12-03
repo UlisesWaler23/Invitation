@@ -1,21 +1,44 @@
-// Función para abrir la invitación
 function openInvitation() {
-    const loadingScreen = document.getElementById('loadingScreen');
-    const mainContent = document.getElementById('mainContent');
+    const loader = document.getElementById("loadingScreen");
+    const wrapper = document.querySelector(".envelope-wrapper");
+    const envelopeImg = document.querySelector(".envelope-img");
+    const clickHint = document.querySelector(".click-hint");
+    const sparkles = document.querySelector(".envelope-sparkles");
+    const touchText = document.querySelector(".touch-text");
 
-    loadingScreen.style.opacity = '0';
+    wrapper.classList.add("opening");
+
+    if (envelopeImg) envelopeImg.classList.add("disappear-instantly");
+    if (clickHint) clickHint.classList.add("disappear-instantly");
+    if (sparkles) sparkles.classList.add("disappear-instantly");
+    if (touchText) touchText.classList.add("disappear-instantly");
+
     setTimeout(() => {
-        loadingScreen.style.display = 'none';
-        mainContent.style.display = 'block';
+        wrapper.classList.add("open-envelope");
+        loader.classList.add("open-envelope");
 
-        // Iniciar contador
-        startCountdown();
-    }, 1000);
+        setTimeout(() => {
+            loader.classList.add("fade-out-loading");
+
+            setTimeout(() => {
+                loader.style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+
+                startCountdown();
+                if (typeof initCarousel === 'function') {
+                    initCarousel();
+                }
+            }, 800);
+
+        }, 1500); 
+
+    }, 300); 
 }
 
-// Contador regresivo
+
 function startCountdown() {
-    const weddingDate = new Date('December 15, 2024 16:00:00').getTime();
+    const currentYear = new Date().getFullYear();
+    const weddingDate = new Date(`${currentYear}-12-27T16:00:00`).getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
@@ -27,23 +50,23 @@ function startCountdown() {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         document.getElementById('countdown').innerHTML = `
-                    <div class="countdown-item">
-                        <span class="countdown-number">${days}</span>
-                        <span class="countdown-label">Días</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number">${hours}</span>
-                        <span class="countdown-label">Horas</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number">${minutes}</span>
-                        <span class="countdown-label">Minutos</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number">${seconds}</span>
-                        <span class="countdown-label">Segundos</span>
-                    </div>
-                `;
+            <div class="countdown-item">
+                <span class="countdown-number">${days}</span>
+                <span class="countdown-label">Días</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number">${hours}</span>
+                <span class="countdown-label">Horas</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number">${minutes}</span>
+                <span class="countdown-label">Minutos</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number">${seconds}</span>
+                <span class="countdown-label">Segundos</span>
+            </div>
+        `;
 
         if (distance < 0) {
             document.getElementById('countdown').innerHTML = '<div class="countdown-item"><span class="countdown-number">¡Hoy es el día!</span></div>';
@@ -54,28 +77,70 @@ function startCountdown() {
     setInterval(updateCountdown, 1000);
 }
 
-// Navegación suave
 function scrollToSection(sectionId) {
     document.getElementById(sectionId).scrollIntoView({
         behavior: 'smooth'
     });
 }
 
-// Simular apertura de maps
 function openMaps(location) {
-    alert(`Aquí se abriría Google Maps para la ubicación: ${location}`);
-    // En una implementación real, usarías:
-    // window.open(`https://maps.google.com/?q=${encodeURIComponent(direccion)}`, '_blank');
+    let url = "";
+
+    if (location === "catedral") {
+        url = "https://www.google.com/maps/place/Parroquia+De+Cristo+Redentor/data=!4m2!3m1!1s0x0:0x524a479eecd7a7c6?hl=es-US";
+    } 
+    else if (location === "hacienda") {
+        url = "https://www.google.com/maps/place/Salon+quinta+castilla/data=!4m2!3m1!1s0x0:0x1f83b98681499cbe?hl=es-US";
+    }
+
+    // Abrir en Google Maps
+    window.open(url, "_blank");
 }
 
-// Manejar el formulario RSVP
-document.getElementById('rsvpForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    alert('¡Gracias por confirmar tu asistencia! Te esperamos en nuestro día especial.');
-    this.reset();
+document.getElementById('rsvpForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); 
+
+    const loadingDiv = document.getElementById('rsvpLoading');
+    loadingDiv.style.display = 'block'; 
+
+    const form = e.target;
+    const name = form.querySelector('input[name="name"]').value;
+    const attending = form.querySelector('select[name="attending"]').value;
+    const people = form.querySelector('select[name="people"]').value;
+    const message = form.querySelector('textarea[name="message"]').value;
+
+    const ip = await fetch("https://api.ipify.org?format=json")
+        .then(res => res.json())
+        .then(data => data.ip);
+
+    const payload = { name, attending, people, message, ip };
+
+    try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbx_xIMOyp9XRRgi90AZ-j5m4vi7Tz_HYHiOekCbF8WuaMXzNipPs3uhCODUrRYsnu70cQ/exec", {
+            method: "POST",
+            body: JSON.stringify(payload)
+        }).then(res => res.json());
+
+        if (response.status === "duplicate") {
+            alert("Ya has confirmado tu asistencia antes ❤️");
+            return;
+        }
+
+        if (response.status === "success") {
+            alert("¡Gracias por confirmar tu asistencia! 🥰");
+            form.reset();
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Ocurrió un error al enviar tu RSVP. Intenta nuevamente.");
+    } finally {
+        loadingDiv.style.display = 'none'; 
+    }
 });
 
-// Efectos de scroll para animaciones
+
+
+
 window.addEventListener('scroll', function () {
     const elements = document.querySelectorAll('.fade-in');
     elements.forEach(element => {
@@ -87,7 +152,6 @@ window.addEventListener('scroll', function () {
     });
 });
 
-// Inicializar estilos para animaciones
 document.addEventListener('DOMContentLoaded', function () {
     const elements = document.querySelectorAll('.fade-in');
     elements.forEach(element => {
@@ -96,31 +160,6 @@ document.addEventListener('DOMContentLoaded', function () {
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
 });
-function openInvitation() {
-    const loader = document.getElementById("loadingScreen");
-    const wrapper = document.querySelector(".envelope-wrapper");
-
-    // Activa la animación del sobre y las líneas
-    wrapper.classList.add("open-envelope");
-    loader.classList.add("open-envelope");
-
-    // Espera a que termine la animación y muestra el contenido
-    setTimeout(() => {
-        loader.classList.add("fade-out-loading");
-
-        // Mostrar el contenido principal
-        setTimeout(() => {
-            loader.style.display = "none";
-            document.getElementById("mainContent").style.display = "block";
-            
-            // Iniciar contador
-            startCountdown();
-            // Iniciar carrusel
-            initCarousel(); // ¡IMPORTANTE! Agregar esta línea
-        }, 800);
-
-    }, 1800);
-}
 
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-slide');
@@ -128,18 +167,16 @@ const totalSlides = slides.length;
 let autoSlideInterval;
 let isAnimating = false;
 
-// Inicializar carrusel cuando se carga la página
 function initCarousel() {
     createDots();
     updateCarousel();
     startAutoSlide();
 }
 
-// Crear indicadores de puntos
 function createDots() {
     const dotsContainer = document.getElementById('carouselDots');
     dotsContainer.innerHTML = '';
-    
+
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('div');
         dot.className = 'carousel-dot';
@@ -149,25 +186,20 @@ function createDots() {
     }
 }
 
-// Ir a slide específico
 function goToSlide(slideIndex) {
     if (isAnimating || slideIndex === currentSlide) return;
-    
+
     isAnimating = true;
-    
-    // Remover clases de animación anteriores
+
     slides.forEach(slide => {
         slide.classList.remove('prev', 'next');
     });
-    
-    // Determinar dirección
+
     const direction = slideIndex > currentSlide ? 'next' : 'prev';
     slides[slideIndex].classList.add(direction);
-    
-    // Ocultar slide actual
+
     slides[currentSlide].classList.remove('active');
-    
-    // Mostrar nuevo slide después de un pequeño delay
+
     setTimeout(() => {
         slides[slideIndex].classList.add('active');
         slides[slideIndex].classList.remove('prev', 'next');
@@ -177,7 +209,6 @@ function goToSlide(slideIndex) {
     }, 400);
 }
 
-// Slide anterior
 function prevSlide() {
     if (isAnimating) return;
     const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
@@ -185,7 +216,6 @@ function prevSlide() {
     resetAutoSlide();
 }
 
-// Slide siguiente
 function nextSlide() {
     if (isAnimating) return;
     const nextIndex = (currentSlide + 1) % totalSlides;
@@ -193,34 +223,28 @@ function nextSlide() {
     resetAutoSlide();
 }
 
-// Actualizar carrusel
 function updateCarousel() {
     const dots = document.querySelectorAll('.carousel-dot');
     const counter = document.getElementById('carouselCounter');
-    
-    // Actualizar dots
+
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
-    
-    // Actualizar contador
+
     counter.textContent = `${currentSlide + 1} / ${totalSlides}`;
 }
 
-// Auto slide cada 5 segundos
 function startAutoSlide() {
     autoSlideInterval = setInterval(() => {
         nextSlide();
     }, 5000);
 }
 
-// Reset auto slide cuando el usuario interactúa
 function resetAutoSlide() {
     clearInterval(autoSlideInterval);
     startAutoSlide();
 }
 
-// Soporte para gestos táctiles
 function setupTouchEvents() {
     const container = document.querySelector('.carousel-container');
     let startX = 0;
@@ -239,10 +263,10 @@ function setupTouchEvents() {
 
     container.addEventListener('touchend', (e) => {
         if (!isDragging) return;
-        
+
         const endX = e.changedTouches[0].clientX;
         const diff = startX - endX;
-        
+
         if (Math.abs(diff) > 50) {
             if (diff > 0) {
                 nextSlide();
@@ -250,13 +274,91 @@ function setupTouchEvents() {
                 prevSlide();
             }
         }
-        
+
         isDragging = false;
         resetAutoSlide();
     });
 }
 
-// Inicializar eventos táctiles cuando se carga
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     setupTouchEvents();
 });
+function updateCountdown() {
+    const weddingDate = new Date("2024-12-27T13:15:00"); 
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) return;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerHTML = `
+        <div class="count-box">
+            <span class="count-number">${days}</span>
+            <span class="count-label">Días</span>
+        </div>
+        <div class="count-box">
+            <span class="count-number">${hours}</span>
+            <span class="count-label">Hrs</span>
+        </div>
+        <div class="count-box">
+            <span class="count-number">${mins}</span>
+            <span class="count-label">Mins</span>
+        </div>
+        <div class="count-box">
+            <span class="count-number">${secs}</span>
+            <span class="count-label">Segs</span>
+        </div>
+    `;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+function addToCalendar() {
+    const title = "Boda de Paulino y Valentina";
+    const description = "¡Acompáñanos a celebrar este día tan especial!";
+    const location = "Parroquia Cristo RedentorAv. Aguascalientes Pte. 101B, Residencial del Valle I, 20070 Aguascalientes, Ags.";
+    
+    const start = new Date("2025-12-27T13:15:00");
+    const end = new Date("2025-12-27T18:00:00");
+
+    const formatDate = (date) => {
+        return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    };
+
+    const startUTC = formatDate(start);
+    const endUTC = formatDate(end);
+
+    const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:${startUTC}
+DTEND:${endUTC}
+SUMMARY:${title}
+DESCRIPTION:${description}
+LOCATION:${location}
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([icsContent], { type: "text/calendar" });
+    const icsURL = URL.createObjectURL(blob);
+
+    const googleURL =
+        `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+        `&text=${encodeURIComponent(title)}` +
+        `&dates=${startUTC}/${endUTC}` +
+        `&details=${encodeURIComponent(description)}` +
+        `&location=${encodeURIComponent(location)}`;
+
+    if (/iphone|ipad|macintosh/i.test(navigator.userAgent)) {
+        window.location.href = icsURL;
+    } else {
+        window.open(googleURL, "_blank");
+    }
+}
+
+

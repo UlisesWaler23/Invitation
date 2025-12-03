@@ -11,7 +11,6 @@
     <meta name="author" content="Los Novios">
     <title>Invitación de Boda</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -22,9 +21,7 @@
 </head>
 
 <body>
-    <!-- Pantalla de carga -->
     <div class="loading-screen" id="loadingScreen">
-        <!-- Líneas que atraviesan la pantalla -->
         <div class="envelope-line horizontal"></div>
         <div class="envelope-line vertical"></div>
 
@@ -38,10 +35,7 @@
         </div>
 
         <div class="envelope-wrapper" onclick="openInvitation()">
-            <!-- Texto "Toca Aquí" flotante -->
             <div class="click-hint">¡Toca Aquí!</div>
-
-            <!-- Partículas de brillo -->
             <div class="envelope-sparkles">
                 <div class="sparkle"></div>
                 <div class="sparkle"></div>
@@ -56,138 +50,161 @@
                 <div class="envelope-bottom"></div>
             </div>
             <div class="letter">
-                <p class="letter-text">Ana & Carlos</p>
+                <p class="letter-text">Paulino y Valentina</p>
                 <p class="letter-sub">Nuestra Boda</p>
             </div>
         </div>
 
-        <!-- Texto inferior -->
         <p class="touch-text">¡Toca el sobre para abrir!</p>
     </div>
 
-    <!-- Contenido principal -->
     <div id="mainContent" style="display: none;">
         <!-- Header -->
         <header class="header fade-in">
-            <h1 class="couple-names">Ana & Carlos</h1>
+            <h1 class="couple-names">Paulino y Valentina</h1>
             <p class="wedding-title">NOS CASAMOS</p>
         </header>
 
-        <!-- Hero Section -->
         <section class="hero">
-            <img src="https://th.bing.com/th/id/OIP.72hNzpXUgHM2Ml3pjC5QGwHaEo?w=258&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
-                alt="Pareja de novios" class="hero-image">
+            <img src="imgs/Principal.jpeg" alt="Pareja de novios" class="hero-image">
             <div class="hero-content">
-                <h2 class="date-place">15 de Diciembre, 2024</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 20px;">Hacienda Los Laureles</p>
+                <h2 class="date-place">27 de diciembre en año en curso</h2>
                 <button class="location-button" onclick="scrollToSection('rsvp')">Confirmar Asistencia</button>
             </div>
         </section>
 
-        <!-- Countdown -->
-        <section class="countdown fade-in">
-            <h2 class="countdown-title">Faltan</h2>
-            <div class="countdown-container" id="countdown"></div>
+        <div class="invitation-text-wrapper">
+            <h1 class="invitation-text">
+                <span>"El Señor es mi pastor, nada me faltará"</span><br>
+                <span>Que la verdadera abundancia no depende de nuestras fuerzas,</span><br>
+                <span>sino de la misericordia divina y tenemos el honor</span><br>
+                <span>de invitarlos a nuestras bodas de oro:</span><br><br>
+
+                <span class="names">Paulino y Valentina</span>
+            </h1>
+        </div>
+
+        <section class="countdown-section fade-in">
+            <div class="countdown-bg"></div>
+            <div class="countdown-content">
+                <h2 class="countdown-title">Faltan</h2>
+                <div class="countdown-boxes" id="countdown">
+                </div>
+
+                <button class="calendar-button" onclick="addToCalendar()">
+                    <span>Agregar a Calendario</span>
+                </button>
+            </div>
         </section>
 
-        <!-- Locations -->
         <section class="locations fade-in">
-            <h2 class="section-title">Nuestro Día Especial</h2>
+            <h2 class="section-title">Nuestro aniversario se llevará acabo </h2>
             <div class="location-cards">
                 <div class="location-card">
-                    <div class="location-icon"></div>
-                    <h3 class="location-time">4:00 PM</h3>
+                    <div class="location-icon"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                            viewBox="0 0 256 256" class="text-[60px]" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M227.09,146.86,190,124.6V104a6,6,0,0,0-3-5.21L134,68.52V46h18a6,6,0,0,0,0-12H134V16a6,6,0,0,0-12,0V34H104a6,6,0,0,0,0,12h18V68.52L69,98.79A6,6,0,0,0,66,104v20.6L28.91,146.86A6,6,0,0,0,26,152v64a6,6,0,0,0,6,6h80a6,6,0,0,0,6-6V168a10,10,0,0,1,20,0v48a6,6,0,0,0,6,6h80a6,6,0,0,0,6-6V152A6,6,0,0,0,227.09,146.86ZM38,155.4l28-16.8V210H38Zm90-9.4a22,22,0,0,0-22,22v42H78V107.48l50-28.57,50,28.57V210H150V168A22,22,0,0,0,128,146Zm90,64H190V138.6l28,16.8Z">
+                            </path>
+                        </svg></div>
+                    <h3 class="location-time">1:15 PM </h3>
                     <h4 class="location-name">Ceremonia Religiosa</h4>
                     <p class="location-address">
-                        Catedral de la Ciudad<br>
-                        Av. Principal #123
+                        Parroquia Cristo Redentor
+                        Av. Aguascalientes Pte. 101B, Residencial del Valle I, 20070 Aguascalientes, Ags
+
                     </p>
                     <button class="location-button" onclick="openMaps('catedral')">Ver en Maps</button>
                 </div>
                 <div class="location-card">
-                    <div class="location-icon"></div>
-                    <h3 class="location-time">7:00 PM</h3>
+                    <div class="location-icon"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                            viewBox="0 0 640 512" class="text-[60px]" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M155.6 17.3C163 3 179.9-3.6 195 1.9L320 47.5l125-45.6c15.1-5.5 32 1.1 39.4 15.4l78.8 152.9c28.8 55.8 10.3 122.3-38.5 156.6L556.1 413l41-15c16.6-6 35 2.5 41 19.1s-2.5 35-19.1 41l-71.1 25.9L476.8 510c-16.6 6.1-35-2.5-41-19.1s2.5-35 19.1-41l41-15-31.3-86.2c-59.4 5.2-116.2-34-130-95.2L320 188.8l-14.6 64.7c-13.8 61.3-70.6 100.4-130 95.2l-31.3 86.2 41 15c16.6 6 25.2 24.4 19.1 41s-24.4 25.2-41 19.1L92.2 484.1 21.1 458.2c-16.6-6.1-25.2-24.4-19.1-41s24.4-25.2 41-19.1l41 15 31.3-86.2C66.5 292.5 48.1 226 76.9 170.2L155.6 17.3zm44 54.4l-27.2 52.8L261.6 157l13.1-57.9L199.6 71.7zm240.9 0L365.4 99.1 378.5 157l89.2-32.5L440.5 71.7z">
+                            </path>
+                        </svg></div>
+                    <h3 class="location-time">Después de la ceremonia religiosa </h3>
                     <h4 class="location-name">Recepción</h4>
                     <p class="location-address">
-                        Hacienda Los Laureles<br>
-                        Carretera km 45.5
+                        el salón Quinta Castilla
+                        Av. Juan Pablo Segundo
+
                     </p>
                     <button class="location-button" onclick="openMaps('hacienda')">Ver en Maps</button>
                 </div>
             </div>
         </section>
-
-        <!-- Carrusel de Fotos -->
         <section class="gallery fade-in">
             <h2 class="section-title">Nuestra Historia</h2>
             <div class="carousel-container">
                 <div class="carousel-track" id="carouselTrack">
-                    <!-- Slide 1 -->
                     <div class="carousel-slide active">
                         <div class="carousel-image-container">
-                            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.14 AM (1).jpeg"
                                 alt="Nuestro primer encuentro" class="carousel-image">
                         </div>
                     </div>
-                    <!-- Slide 2 -->
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                                alt="La propuesta" class="carousel-image">
+                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.14 AM (2).jpeg" alt="La propuesta"
+                                class="carousel-image">
                         </div>
                     </div>
-                    <!-- Slide 3 -->
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                                alt="Preparativos" class="carousel-image">
+                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.14 AM.jpeg" alt="Preparativos"
+                                class="carousel-image">
                         </div>
                     </div>
-                    <!-- Slide 4 -->
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="https://images.unsplash.com/photo-1537633552985-df8f916c5c4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                                alt="Momentos especiales" class="carousel-image">
+                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.15 AM (1).jpeg" alt="Momentos especiales"
+                                class="carousel-image">
                         </div>
                     </div>
-                    <!-- Slide 5 -->
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                                alt="Nuestro amor" class="carousel-image">
+                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.15 AM.jpeg" alt="Nuestro amor"
+                                class="carousel-image">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-image-container">
+                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.22.41 AM.jpeg" alt="Nuestro amor"
+                                class="carousel-image">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-image-container">
+                            <img src="imgs/LA QUE FALTA.jpeg" alt="Nuestro amor" class="carousel-image">
                         </div>
                     </div>
                 </div>
-
-                <!-- Botones de navegación -->
                 <button class="carousel-btn carousel-prev" onclick="prevSlide()">❮</button>
                 <button class="carousel-btn carousel-next" onclick="nextSlide()">❯</button>
 
-                <!-- Contador -->
                 <div class="carousel-counter" id="carouselCounter">1 / 5</div>
-
-                <!-- Indicadores -->
                 <div class="carousel-dots" id="carouselDots"></div>
             </div>
 
-            <!-- Instrucciones -->
             <div class="carousel-instructions">
                 <p>Desliza para ver más fotos</p>
             </div>
         </section>
 
 
-        <!-- RSVP Form -->
         <section class="rsvp fade-in" id="rsvp">
             <h2 class="section-title">Confirma Tu Asistencia</h2>
             <form class="rsvp-form" id="rsvpForm">
                 <div class="form-group">
                     <label class="form-label">Nombre Completo</label>
-                    <input type="text" class="form-input" required placeholder="Tu nombre y apellido">
+                    <input type="text" class="form-input" name="name" required placeholder="Tu nombre y apellido">
                 </div>
                 <div class="form-group">
                     <label class="form-label">¿Asistirás?</label>
-                    <select class="form-select" required>
+                    <select class="form-select" name="attending" required>
                         <option value="">Selecciona una opción</option>
                         <option value="si">¡Sí, estaré allí!</option>
                         <option value="no">Lamentablemente no podré asistir</option>
@@ -195,7 +212,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Número de personas</label>
-                    <select class="form-select" required>
+                    <select class="form-select" name="people" required>
                         <option value="">Selecciona el número</option>
                         <option value="1">1 persona</option>
                         <option value="2">2 personas</option>
@@ -205,16 +222,21 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Mensaje para los novios (opcional)</label>
-                    <textarea class="form-textarea" rows="4" placeholder="Escribe tu mensaje especial..."></textarea>
+                    <textarea class="form-textarea" name="message" rows="4"
+                        placeholder="Escribe tu mensaje especial..."></textarea>
                 </div>
+                <div id="rsvpLoading" style="display:none; margin-bottom: 10px; text-align: center;">
+                    <div class="spinner"></div>
+                    <p>Enviando tu confirmación...</p>
+                </div>
+
                 <button type="submit" class="submit-button">Enviar Confirmación</button>
             </form>
         </section>
 
-        <!-- Footer -->
         <footer class="footer fade-in">
-            <p class="footer-text">Con el amor de Ana y Carlos</p>
-            <p class="footer-text">15 de Diciembre, 2024</p>
+            <p class="footer-text">Con el amor de Paulino y Valentina</p>
+            <p class="footer-text">27 de Diciembre, 2025</p>
             <p class="footer-text" style="margin-top: 20px; font-size: 0.9rem;">
                 ¡Esperamos compartir este día especial contigo!
             </p>

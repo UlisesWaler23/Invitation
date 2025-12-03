@@ -11,7 +11,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Animación de entrada */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -27,7 +26,6 @@ body {
     transition: opacity 1s ease-out;
 }
 
-/* LÍNEAS QUE ATRAVIESAN LA PANTALLA */
 .envelope-line {
     position: absolute;
     top: 50%;
@@ -75,14 +73,12 @@ body {
     }
 }
 
-/* Efecto hover más pronunciado */
 .envelope-wrapper:hover .envelope-img {
     animation: pulse-strong 1s infinite ease-in-out;
     transform: scale(1.1);
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
 }
 
-/* La imagen desaparece cuando se abre */
 .open-envelope .envelope-img {
     opacity: 0;
     transform: scale(0.8);
@@ -102,7 +98,6 @@ body {
     transform: translateX(-50%);
 }
 
-/* Cuando se abre, las líneas se expanden */
 .open-envelope .envelope-line.horizontal {
     transform: translateY(-50%) scaleX(0);
     opacity: 0;
@@ -113,7 +108,6 @@ body {
     opacity: 0;
 }
 
-/* Header y nombres */
 .header {
     text-align: center;
     padding: 40px 20px;
@@ -135,7 +129,6 @@ body {
     letter-spacing: 3px;
 }
 
-/* Hero Section */
 .hero {
     height: 100vh;
     position: relative;
@@ -165,7 +158,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Countdown */
 .countdown {
     background: rgba(255, 242, 213, 0.9);
     padding: 40px 20px;
@@ -206,7 +198,6 @@ body {
     color: #666;
 }
 
-/* Locations */
 .locations {
     padding: 60px 20px;
     background: white;
@@ -281,7 +272,6 @@ body {
     background: #b8941f;
 }
 
-/* RSVP Form */
 .rsvp {
     padding: 60px 20px;
     background: linear-gradient(135deg, #f5f3e9 0%, #fff2d5 100%);
@@ -342,7 +332,6 @@ body {
     background: #b8941f;
 }
 
-/* Footer */
 .footer {
     background: #333;
     color: white;
@@ -355,7 +344,6 @@ body {
     opacity: 0.8;
 }
 
-/* Animaciones */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -372,7 +360,6 @@ body {
     animation: fadeInUp 1s ease-out;
 }
 
-/* SOBRE CON ANIMACIÓN MEJORADA */
 .envelope-wrapper {
     position: absolute;
     top: 50%;
@@ -393,7 +380,6 @@ body {
     transition: all 1s ease;
 }
 
-/* Parte superior del sobre (se abre hacia arriba) - INICIALMENTE OCULTA */
 .envelope-top {
     position: absolute;
     top: 0;
@@ -411,7 +397,6 @@ body {
     transform: rotateX(0deg);
 }
 
-/* Parte inferior del sobre (se abre hacia abajo) - INICIALMENTE OCULTA */
 .envelope-bottom {
     position: absolute;
     bottom: 0;
@@ -428,7 +413,6 @@ body {
     transform: rotateX(0deg);
 }
 
-/* Cuando se abre, mostramos las partes y las animamos */
 .open-envelope .envelope-top {
     opacity: 1;
     transform: rotateX(120deg);
@@ -439,7 +423,6 @@ body {
     transform: rotateX(-120deg);
 }
 
-/* Carta que sale - INICIALMENTE OCULTA */
 .letter {
     position: absolute;
     top: 50%;
@@ -563,7 +546,6 @@ body {
     opacity: 0.8;
 }
 
-/* Texto bajo "Toca para abrir" */
 .touch-text {
     position: absolute;
     bottom: 100px;
@@ -576,22 +558,17 @@ body {
     white-space: nowrap;
 }
 
-/* ANIMACIONES */
-
-/* Carta sube cuando el sobre se abre */
 .open-envelope .letter {
     transform: translate(-50%, -50%) translateY(-60px);
     opacity: 1;
 }
 
-/* Desvanecer pantalla de carga */
 .fade-out-loading {
     opacity: 0;
     transition: opacity 0.8s ease-out;
     pointer-events: none;
 }
 
-/* Efecto de brillo en el sobre */
 .envelope::before {
     content: '';
     position: absolute;
@@ -631,7 +608,6 @@ body {
     }
 }
 
-/* Efecto de parpadeo sutil */
 @keyframes subtle-blink {
     0%, 90%, 100% {
         opacity: 1;
@@ -647,20 +623,17 @@ body {
         subtle-blink 4s infinite ease-in-out;
 }
 
-/* Cuando se abre, la imagen desaparece con efecto */
 .open-envelope .envelope-img {
     opacity: 0;
     transform: scale(0.8) rotate(10deg);
     animation: none;
 }
 
-/* Efecto de click */
 .envelope-img:active {
     transform: scale(0.95);
     transition: transform 0.1s ease;
 }
 
-/* Texto "Toca Aquí" flotante */
 .click-hint {
     position: absolute;
     top: -60px;
@@ -688,7 +661,6 @@ body {
     }
 }
 
-/* Efecto de partículas alrededor */
 .envelope-sparkles {
     position: absolute;
     width: 100%;
@@ -722,7 +694,6 @@ body {
     }
 }
 
-/* Responsive para móviles */
 @media (max-width: 480px) {
     .envelope-img {
         animation: 
@@ -777,7 +748,6 @@ body {
     }
 }
 
-/* Carrusel de Imágenes */
 .gallery {
     padding: 80px 20px;
     background: linear-gradient(135deg, #f5f3e9 0%, #fff2d5 100%);
@@ -788,30 +758,30 @@ body {
     max-width: 400px;
     margin: 0 auto;
     position: relative;
-    height: 500px; /* Agregar altura fija */
-    overflow: hidden; /* Ocultar slides fuera del contenedor */
+    height: 500px; 
+    overflow: hidden; 
 }
 
 .carousel-track {
-    position: relative; /* Cambiar de flex a relative */
+    position: relative; 
     width: 100%;
     height: 100%;
 }
 
 .carousel-slide {
-    position: absolute; /* Posicionar slides de forma absoluta */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0; /* Ocultar todos inicialmente */
+    opacity: 0; 
     transform: scale(0.9);
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
 }
 
 .carousel-slide.active {
-    opacity: 1; /* Solo el activo es visible */
+    opacity: 1; 
     transform: scale(1);
     pointer-events: all;
     z-index: 2;
@@ -838,9 +808,11 @@ body {
 }
 
 .carousel-image {
-    width: 100%;
+   width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; 
+    background-color: #f5f3e9; 
+    padding: 10px; 
     display: block;
     transition: transform 0.8s ease;
 }
@@ -849,7 +821,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Efectos de marco dorado */
 .carousel-image-container::before {
     content: '';
     position: absolute;
@@ -876,7 +847,6 @@ body {
     opacity: 0.8;
 }
 
-/* Botones de navegación */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -912,7 +882,6 @@ body {
     right: -30px;
 }
 
-/* Indicadores */
 .carousel-dots {
     display: flex;
     justify-content: center;
@@ -961,7 +930,6 @@ body {
     transform: scale(1.2);
 }
 
-/* Instrucciones */
 .carousel-instructions {
     text-align: center;
     margin-top: 30px;
@@ -992,7 +960,6 @@ body {
     margin: 0;
 }
 
-/* Contador */
 .carousel-counter {
     position: absolute;
     bottom: -50px;
@@ -1009,7 +976,6 @@ body {
     z-index: 5;
 }
 
-/* Efecto de brillo en la imagen activa */
 .carousel-slide.active .carousel-image-container::after {
     content: '';
     position: absolute;
@@ -1033,7 +999,6 @@ body {
     100% { left: 200%; }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .gallery {
         padding: 60px 20px;
@@ -1095,4 +1060,223 @@ body {
         width: 12px;
         height: 12px;
     }
+}
+
+.disappear-instantly {
+    opacity: 0 !important;
+    transform: scale(0) !important;
+    transition: all 0.3s ease !important;
+    pointer-events: none !important;
+}
+
+.open-envelope .envelope-img,
+.open-envelope .click-hint,
+.open-envelope .envelope-sparkles {
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.click-hint {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #d4af37, #b8941f);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-family: 'Dancing Script', cursive;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: float-up 3s infinite ease-in-out;
+    z-index: 25;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease; 
+}
+
+.envelope-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    animation: pulse-gentle 2s infinite ease-in-out;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+.envelope-wrapper:not(.opening) .envelope-img {
+    animation: 
+        pulse-gentle 2s infinite ease-in-out,
+        subtle-blink 4s infinite ease-in-out;
+}
+
+.envelope-wrapper:not(.opening):hover .envelope-img {
+    animation: pulse-strong 1s infinite ease-in-out;
+}
+.envelope-wrapper.opening .envelope-img,
+.envelope-wrapper.opening .click-hint {
+    animation: none !important;
+}
+
+.envelope-wrapper.opening .envelope {
+    animation-delay: 0.3s; 
+}
+
+.open-envelope .touch-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.invitation-text-wrapper {
+    width: 100%;
+    background: #f5f0e9;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.invitation-text {
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    max-width: 500px;     
+    color: #000;
+    font-size: 1.25rem;   
+    line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+    .invitation-text {
+        font-size: 1.4rem; 
+    }
+}
+
+.names {
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+.countdown-section {
+    margin-top: 40px;
+}
+
+.countdown-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 350px;
+    background-color: rgba(177, 155, 107, 0.7);
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    z-index: 1;
+}
+
+.countdown-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+}
+
+.countdown-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.countdown-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.count-box {
+    width: 80px;
+    height: 80px;
+    background: rgb(255, 217, 168);
+    border-radius: 12px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.count-box span {
+    z-index: 5;
+    position: relative;
+    font-family: 'Dancing Script', cursive;
+}
+
+.count-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.count-label {
+    font-size: 0.9rem;
+}
+
+.count-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.15);
+    border-radius: 12px;
+}
+
+.calendar-button {
+    font-family: 'Dancing Script', cursive;
+    background: rgb(255, 217, 168);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.calendar-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.18);
+    border-radius: inherit;
+    transform: scale(0);
+    transition: 0.3s;
+}
+
+.calendar-button:hover::before {
+    transform: scale(1);
+}
+
+.spinner {
+  border: 4px solid rgba(0,0,0,0.1);
+  border-left-color: #ff4081; 
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 5px auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#rsvpLoading p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
 }
