@@ -17,7 +17,6 @@
         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Cinzel+Decorative:wght@400;700;900&family=Playwrite+US+Trad:wght@100..400&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -59,7 +58,6 @@
     </div>
 
     <div id="mainContent" style="display: none;">
-        <!-- Header -->
         <header class="header fade-in">
             <h1 class="couple-names">Paulino y Valentina</h1>
             <p class="wedding-title">NOS CASAMOS</p>
@@ -142,43 +140,37 @@
                 <div class="carousel-track" id="carouselTrack">
                     <div class="carousel-slide active">
                         <div class="carousel-image-container">
-                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.14 AM (1).jpeg"
-                                alt="Nuestro primer encuentro" class="carousel-image">
+                            <img src="imgs/1.jpeg" alt="Nuestro primer encuentro" class="carousel-image">
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.14 AM (2).jpeg" alt="La propuesta"
-                                class="carousel-image">
+                            <img src="imgs/2.jpeg" alt="La propuesta" class="carousel-image">
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.14 AM.jpeg" alt="Preparativos"
-                                class="carousel-image">
+                            <img src="imgs/3.jpeg" alt="Preparativos" class="carousel-image">
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.15 AM (1).jpeg" alt="Momentos especiales"
-                                class="carousel-image">
+                            <img src="imgs/4.jpeg" alt="Momentos especiales" class="carousel-image">
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.21.15 AM.jpeg" alt="Nuestro amor"
-                                class="carousel-image">
+                            <img src="imgs/5.jpeg" alt="Nuestro amor" class="carousel-image">
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="imgs/WhatsApp Image 2025-11-29 at 12.22.41 AM.jpeg" alt="Nuestro amor"
-                                class="carousel-image">
+                            <img src="imgs/6.jpeg" alt="Nuestro amor" class="carousel-image">
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="carousel-image-container">
-                            <img src="imgs/LA QUE FALTA.jpeg" alt="Nuestro amor" class="carousel-image">
+                            <img src="imgs/7.jpeg" alt="Nuestro amor" class="carousel-image">
                         </div>
                     </div>
                 </div>
@@ -188,12 +180,17 @@
                 <div class="carousel-counter" id="carouselCounter">1 / 5</div>
                 <div class="carousel-dots" id="carouselDots"></div>
             </div>
-
             <div class="carousel-instructions">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h8m-8 5h8m-8 5h8">
+                    </path>
+                </svg>
                 <p>Desliza para ver más fotos</p>
+                    <div id="customCounter" class="custom-counter">1 / 7</div>
             </div>
-        </section>
 
+
+        </section>
 
         <section class="rsvp fade-in" id="rsvp">
             <h2 class="section-title">Confirma Tu Asistencia</h2>
@@ -243,7 +240,23 @@
         </footer>
     </div>
 
+    <div class="audio-controls" id="audioControls">
+        <button class="audio-btn" onclick="toggleAudio()" id="audioToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+                </path>
+            </svg>
+        </button>
+
+        <div class="volume-control" id="volumeControl">
+            <input type="range" min="0" max="100" value="25" class="volume-slider" oninput="setVolume(this.value)">
+            <span class="volume-percent">25%</span>
+        </div>
+    </div>
+
     <script src="main.js"></script>
+
 </body>
 
 </html>

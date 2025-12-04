@@ -933,6 +933,7 @@ body {
 .carousel-instructions {
     text-align: center;
     margin-top: 30px;
+    align-items: center;  
 }
 
 .carousel-instructions svg {
@@ -1280,3 +1281,138 @@ body {
   font-size: 14px;
   color: #333;
 }
+.audio-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: none; 
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    opacity: 1 !important; 
+    transform: none !important; 
+}
+
+.audio-btn {
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(139, 69, 19, 0.3);
+}
+
+.audio-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(139, 69, 19, 0.4);
+    background: linear-gradient(135deg, #A0522D, #8B4513);
+}
+
+.audio-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 12px;
+    border-radius: 25px;
+    min-width: 120px;
+}
+
+.volume-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #8B4513, #A0522D);
+    outline: none;
+    opacity: 0.9;
+    transition: opacity .2s;
+}
+
+.volume-slider:hover {
+    opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #8B4513;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #8B4513;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.volume-percent {
+    font-size: 14px;
+    font-weight: 600;
+    color: #8B4513;
+    min-width: 35px;
+    text-align: center;
+    font-family: 'Cinzel Decorative', serif;
+}
+
+@media (max-width: 768px) {
+    .audio-controls {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+    }
+    
+    .audio-btn {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .volume-control {
+        min-width: 100px;
+    }
+    
+    .volume-percent {
+        font-size: 12px;
+        min-width: 30px;
+    }
+}
+.custom-counter {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #333;
+    margin-top: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+
